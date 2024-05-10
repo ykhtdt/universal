@@ -1,1 +1,3 @@
-console.log("Hello World");
+import { router } from "./src/router.js";
+
+router();
