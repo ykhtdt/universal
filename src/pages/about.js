@@ -6,7 +6,7 @@ class About extends Component {
     this.setTitle("About");
   }
 
-  async getHtml() {
+  async template() {
     console.log(this.params.id);
 
     return `

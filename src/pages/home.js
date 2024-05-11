@@ -6,7 +6,7 @@ class Home extends Component {
     this.setTitle("Home");
   }
 
-  async getHtml() {
+  async template() {
     return `
       <h1>Welcome Home</h1>
       <p>

@@ -3,11 +3,12 @@ class Component {
     this.params = params;
   }
 
+  // 페이지 제목 변경
   setTitle(title) {
     document.title = title;
   }
 
-  async getHtml() {
+  async template() {
     return "";
   }
 }

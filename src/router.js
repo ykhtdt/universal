@@ -57,7 +57,7 @@ const router = async () => {
   // match에 따라 뷰(페이지 클래스의 인스턴스)를 생성한다.
   const view = new match.route.view(getParams(match));
 
-  document.querySelector("#app").innerHTML = await view.getHtml();
+  document.querySelector("#app").innerHTML = await view.template();
 };
 
 // 브라우저의 뒤로가기/앞으로 가기 버튼을 클릭할 때마다 router 함수가 호출되어 적절한 페이지를 렌더링한다.

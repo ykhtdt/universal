@@ -6,7 +6,7 @@ class AboutView extends Component {
     this.setTitle("AboutView");
   }
 
-  async getHtml() {
+  async template() {
     console.log(this.params.id);
 
     return `
