@@ -1,18 +1,32 @@
 import Component from "../shared/base/component.js";
 
 class Home extends Component {
-  constructor(params) {
-    super(params);
-    this.setTitle("Home");
+  initialState() {
+    this.state = {
+      count: 0,
+    };
+  }
+
+  setEvent() {
+    this.addEvent('click', '[data-button-id="count-plus"]', ({ target }) => {
+      console.log(target);
+      this.setState({
+        count: this.state.count + 1,
+      });
+    });
   }
 
   async template() {
     return `
       <h1>Welcome Home</h1>
-      <p>
-        Welcome back
-      </p>
-      <a href="/posts" data-link>View recent posts</a>
+      <div>
+        ${this.state.count}
+      </div>
+      <div>
+        <button data-button-id="count-plus">
+          PLUS
+        </button>
+      </div>
     `;
   }
 }
