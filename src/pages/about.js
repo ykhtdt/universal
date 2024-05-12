@@ -1,11 +1,6 @@
 import Component from "../shared/base/component.js";
 
 class About extends Component {
-  constructor(params) {
-    super(params);
-    this.setTitle("About");
-  }
-
   async template() {
     console.log(this.params.id);
 

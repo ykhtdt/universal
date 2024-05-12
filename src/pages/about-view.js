@@ -1,11 +1,6 @@
 import Component from "../shared/base/component.js";
 
 class AboutView extends Component {
-  constructor(params) {
-    super(params);
-    this.setTitle("AboutView");
-  }
-
   async template() {
     console.log(this.params.id);
 
