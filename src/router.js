@@ -1,13 +1,14 @@
 import Home from "./pages/home.js";
-import About from "./pages/about.js";
-import AboutView from "./pages/about-view.js";
+import Posts from "./pages/posts.js";
+import Post from "./pages/post.js";
+import NotFound from "./pages/not-found.js";
 
-const pathToRegex = (path) => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
+const pathToRegex = (path) => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "([^\\/]+)") + "$");
 
 const getParams = (match) => {
   const values = match.result.slice(1);
   const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map(result => result[1]);
-  
+
   return Object.fromEntries(keys.map((key, i) => {
     return [key, values[i]];
   }));
@@ -21,36 +22,57 @@ const redirectTo = (url) => {
 
 // 브라우저의 URL 경로에 따라 적절한 페이지를 렌더링
 const router = async () => {
+  // 현재 URL 경로를 가져옴
+  const currentPath = window.location.pathname;
+
+  // 현재 경로가 슬래시로 끝나면 슬래시를 제거하고 리디렉션
+  if (currentPath !== "/" && currentPath.endsWith("/")) {
+    const trimmedPath = currentPath.slice(0, -1);
+    redirectTo(trimmedPath);
+    return;
+  }
+
   // 주어진 경로에 대해 페이지를 매핑
   const routes = [
-    {
-      path: "/", view: Home,
-    },
-    {
-      path: "/about", view: About,
-    },
-    {
-      path: "/about/:id", view: AboutView,
-    }
+    { path: "/", view: Home },
+    { path: "/posts", view: Posts },
+    { path: "/posts/:id", view: Posts },
+    { path: "/posts/:category/:id", view: Post },
   ];
 
-  
   // 현재 URL 경로와 각 경로에 대한 페이지 클래스를 매핑하여 배열에 저장한다.
   const potentialMatches = routes.map(route => {
     return {
       route: route,
-      result: window.location.pathname.match(pathToRegex(route.path))
+      result: currentPath.match(pathToRegex(route.path))
     };
   });
 
   // 현재 URL에 대한 매칭되는 경로를 찾는다.
   let match = potentialMatches.find(potentialMatch => potentialMatch.result !== null);
 
-  // 매칭되는 경로가 없으면 기본 경로("/")로 설정한다.
+  // 매칭되는 경로가 없으면 404로 설정한다.
   if (!match) {
     match = {
-      route: routes[0],
-      result: true
+      route: {
+        path: "/404",
+        view: NotFound,
+      },
+      result: [currentPath]
+    };
+  }
+
+  // 매칭된 경로와 URL이 정확히 일치하지 않는 경우 404 처리
+  // ex. `/posts/category/id`는 `/posts/:category`에 매칭되지 않는다.
+  const matchIsValid = match.result && match.result[0] === currentPath;
+
+  if (!matchIsValid) {
+    match = {
+      route: {
+        path: "/404",
+        view: NotFound,
+      },
+      result: [currentPath]
     };
   }
 
@@ -59,6 +81,8 @@ const router = async () => {
     target: document.querySelector("#app"),
     params: getParams(match)
   });
+
+  // console.log(getParams(match));
 
   // document.querySelector("#app").innerHTML = await view.template();
 };
@@ -84,10 +108,10 @@ document.addEventListener("DOMContentLoaded", () => {
         redirectTo(nextUrl);
       }
     }
-  })
+  });
 });
 
-export { 
+export {
   router,
   redirectTo,
 };
