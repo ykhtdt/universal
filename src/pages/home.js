@@ -1,5 +1,5 @@
-import Component from "../shared/base/component.js";
-import Container from "../shared/ui/layout/container.js";
+import Component from "/src/shared/base/component.js";
+import Container from "/src/shared/ui/layout/container.js";
 
 class Home extends Component {
   initialState() {

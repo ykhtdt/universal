@@ -1,4 +1,4 @@
-import Component from "../shared/base/component.js";
+import Component from "/src/shared/base/component.js";
 
 class Posts extends Component {
   async template() {
