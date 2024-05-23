@@ -1,4 +1,5 @@
 import Component from "../shared/base/component.js";
+import Container from "../shared/ui/layout/container.js";
 
 class Home extends Component {
   initialState() {
@@ -17,17 +18,24 @@ class Home extends Component {
   }
 
   async template() {
-    return `
-      <h1>Welcome Home</h1>
-      <div>
-        ${this.state.count}
-      </div>
-      <div>
-        <button data-button-id="count-plus">
-          PLUS
-        </button>
-      </div>
-    `;
+    const container = new Container({
+      target: document.createElement('div'),
+      props: {
+        children: `
+          <h1>Welcome Home</h1>
+          <div>
+            ${this.state.count}
+          </div>
+          <div>
+            <button data-button-id="count-plus">
+              PLUS
+            </button>
+          </div>
+        `
+      }
+    });
+
+    return container.template();
   }
 }
 
