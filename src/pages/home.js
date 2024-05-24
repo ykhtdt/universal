@@ -1,5 +1,6 @@
 import Component from "/src/shared/base/component.js";
 import Container from "/src/shared/ui/layout/container.js";
+import Section from "/src/shared/ui/layout/section.js";
 
 class Home extends Component {
   initialState() {
@@ -18,24 +19,37 @@ class Home extends Component {
   }
 
   async template() {
-    const container = new Container({
+    const contentHTML = `
+      <h1>Welcome Home</h1>
+      <div>
+        ${this.state.count}
+      </div>
+      <div>
+        <button data-button-id="count-plus">
+          PLUS
+        </button>
+      </div>
+    `;
+
+    const section = new Section({
       target: document.createElement('div'),
       props: {
-        children: `
-          <h1>Welcome Home</h1>
-          <div>
-            ${this.state.count}
-          </div>
-          <div>
-            <button data-button-id="count-plus">
-              PLUS
-            </button>
-          </div>
-        `
+        children: contentHTML,
       }
     });
 
-    return container.template();
+    const sectionHTML = await section.template();
+
+    const container = new Container({
+      target: document.createElement('div'),
+      props: {
+        children: sectionHTML,
+      }
+    });
+
+    const containerHTML = await container.template();
+
+    return containerHTML;
   }
 }
 
