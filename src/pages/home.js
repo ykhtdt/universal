@@ -32,7 +32,6 @@ class Home extends Component {
     `;
 
     const section = new Section({
-      target: document.createElement('div'),
       props: {
         children: contentHTML,
       }
@@ -41,7 +40,6 @@ class Home extends Component {
     const sectionHTML = await section.template();
 
     const container = new Container({
-      target: document.createElement('div'),
       props: {
         children: sectionHTML,
       }

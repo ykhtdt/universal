@@ -4,7 +4,7 @@ class Component {
   state;
   params;
 
-  constructor({ target, props, state, params }) {
+  constructor({ target = null, props, state, params }) {
     this.target = target;
     this.props = props;
     this.state = state;
@@ -23,7 +23,9 @@ class Component {
   }
 
   async render() {
-    this.target.innerHTML = await this.template();
+    if (this.target) {
+      this.target.innerHTML = await this.template();
+    }
     this.mounted();
   }
 
@@ -39,8 +41,11 @@ class Component {
   setEvent() {}
 
   addEvent(eventType, selector, callback) {
+    if (!this.target) {
+      return;
+    }
+
     this.target.addEventListener(eventType, (event) => {
-      // closest: 일치하는 요소를 선택자와 일치하는 요소를 찾을 때까지, 자기 자신을 포함해 위쪽으로 문서 트리를 순회
       if (!event.target.closest(selector)) {
         return false;
       }
