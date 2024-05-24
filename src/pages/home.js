@@ -18,7 +18,7 @@ class Home extends Component {
     });
   }
 
-  async template() {
+  template() {
     const contentHTML = `
       <h1>Welcome Home</h1>
       <div>
@@ -37,7 +37,7 @@ class Home extends Component {
       }
     });
 
-    const sectionHTML = await section.template();
+    const sectionHTML = section.template();
 
     const container = new Container({
       props: {
@@ -45,7 +45,7 @@ class Home extends Component {
       }
     });
 
-    const containerHTML = await container.template();
+    const containerHTML = container.template();
 
     return containerHTML;
   }

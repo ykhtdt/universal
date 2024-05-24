@@ -1,7 +1,7 @@
 import Component from "/src/shared/base/component.js";
 
 class Post extends Component {
-  async template() {
+  template() {
     console.log(this.params.id);
 
     return `

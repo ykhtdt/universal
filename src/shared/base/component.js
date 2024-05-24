@@ -18,13 +18,13 @@ class Component {
 
   mounted() {}
 
-  async template() {
+  template() {
     return "";
   }
 
-  async render() {
+  render() {
     if (this.target) {
-      this.target.innerHTML = await this.template();
+      this.target.innerHTML = this.template();
     }
     this.mounted();
   }

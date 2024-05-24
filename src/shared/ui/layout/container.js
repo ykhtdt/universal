@@ -1,7 +1,7 @@
 import Component from "/src/shared/base/component.js";
 
 class Container extends Component {
-  async template() {
+  template() {
     const children = this.props.children;
 
     return `
