@@ -1,14 +1,18 @@
+import parseTemplate from './template-parser.js';
+
 class Component {
   target;
   props;
   state;
   params;
+  componentMap;
 
-  constructor({ target = null, props, state, params }) {
+  constructor({ target = null, props, state, componentMap = {}, params }) {
     this.target = target;
     this.props = props;
     this.state = state;
     this.params = params;
+    this.componentMap = componentMap;
     this.initialState();
     this.setEvent();
     this.render();
@@ -24,7 +28,7 @@ class Component {
 
   render() {
     if (this.target) {
-      this.target.innerHTML = this.template();
+      this.target.innerHTML = parseTemplate(this.template(), this.componentMap);
     }
     this.mounted();
   }
