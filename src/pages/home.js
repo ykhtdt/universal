@@ -1,8 +1,20 @@
 import Component from "/src/shared/base/component.js";
+
 import Container from "/src/shared/ui/layout/container.js";
 import Section from "/src/shared/ui/layout/section.js";
+import Heading from "/src/shared/ui/typography/heading.js";
+
+const componentMap = {
+  container: Container,
+  section: Section,
+  heading: Heading,
+};
 
 class Home extends Component {
+  constructor(args) {
+    super({ ...args, componentMap });
+  }
+
   initialState() {
     this.state = {
       count: 0,
@@ -19,35 +31,17 @@ class Home extends Component {
   }
 
   template() {
-    const contentHTML = `
-      <h1>Welcome Home</h1>
-      <div>
-        ${this.state.count}
-      </div>
-      <div>
-        <button data-button-id="count-plus">
-          PLUS
-        </button>
-      </div>
+    const template = `
+      <Container>
+        <Section>
+          <heading level="1">Welcome Home</heading>
+          <div>${this.state.count}</div>
+          <div><button data-button-id="count-plus">PLUS</button></div>
+        </Section>
+      </Container>
     `;
 
-    const section = new Section({
-      props: {
-        children: contentHTML,
-      }
-    });
-
-    const sectionHTML = section.template();
-
-    const container = new Container({
-      props: {
-        children: sectionHTML,
-      }
-    });
-
-    const containerHTML = container.template();
-
-    return containerHTML;
+    return template;
   }
 }
 
