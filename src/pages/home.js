@@ -23,7 +23,6 @@ class Home extends Component {
 
   setEvent() {
     this.addEvent('click', '[data-button-id="count-plus"]', ({ target }) => {
-      console.log(target);
       this.setState({
         count: this.state.count + 1,
       });
@@ -31,6 +30,8 @@ class Home extends Component {
   }
 
   template() {
+    const repeat = Array.from({ length: 5 }, (_, i) => i + 1);
+
     return `
       <Container>
         <Section>
@@ -42,6 +43,13 @@ class Home extends Component {
         </Section>
         <section class="wrapper">
           Temp
+          ${repeat.map((item) => `
+            <Heading level="2">
+              ${item}
+            </Heading>
+           `
+          ).join("")}
+          Test, I
         </section>
       </Container>
     `
