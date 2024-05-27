@@ -3,11 +3,13 @@ import Component from "/src/shared/base/component.js";
 import Container from "/src/shared/ui/layout/container.js";
 import Section from "/src/shared/ui/layout/section.js";
 import Heading from "/src/shared/ui/typography/heading.js";
+import FilledButton from "/src/shared/ui/button/filled-button.js";
 
 const componentMap = {
   Container,
   Section,
   Heading,
+  FilledButton,
 };
 
 class Home extends Component {
@@ -38,7 +40,7 @@ class Home extends Component {
           <Heading level="1">Welcome Home</Heading>
           <div>${this.state.count}</div>
           <div>
-            <button data-button-id="count-plus">PLUS</button>
+            <FilledButton id="count-plus">Plus</FilledButton> 
           </div>
         </Section>
         <section class="wrapper">
