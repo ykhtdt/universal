@@ -8,7 +8,7 @@ class Heading extends Component {
     const tag = Math.max(1, Math.min(6, parseInt(level))) || 1;
 
     return `
-      <h${tag} class="heading" data-component="heading">
+      <h${tag} class="heading-${tag}" data-component="heading">
         ${children}
       </h${tag}>
     `;
