@@ -46,7 +46,7 @@ class Home extends Component {
    * 때문에, 컴포넌트에 이벤트를 추가하려면 id를 전달하고 이를 setEvent로 처리한다.
    */
   template() {
-    const repeat = Array.from({ length: 5 }, (_, i) => i + 1);
+    const repeat = Array.from({ length: 6 }, (_, i) => i + 1);
 
     return `
       <Container>
