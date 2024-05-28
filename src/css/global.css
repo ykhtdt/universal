@@ -1,6 +1,9 @@
 @import "./style.css";
 
+@import "./pages/home.css";
+
 body {
+  font-family: "Noto Sans KR", sans-serif;
   background-color: #09090B;
   color: #FFFFFF;
 }
