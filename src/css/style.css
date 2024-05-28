@@ -6,8 +6,49 @@
   margin: 0 auto;
 }
 
+.container-inner {
+  padding: 1.5rem 0.75rem;
+}
+
 .section {
   padding: 1.25rem 0;
+}
+
+/* typography */
+.heading-1 {
+  font-weight: 800;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.heading-2 {
+  font-weight: 600;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.heading-3 {
+  font-weight: 600;
+	font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.heading-4 {
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.heading-5 {
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.heading-6 {
+  font-weight: 600;
+	font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 /* button */
@@ -23,8 +64,13 @@
 
   background-color: #27272A;
   padding: 0.125rem 0.625rem;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1rem;
   line-height: 1.25rem;
   border-radius: 0.25rem;
+  transition: background-color 0.25s;
+
+  &:hover {
+    background-color: rgba(39, 39, 42, 0.8);
+  }
 }
