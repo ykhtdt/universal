@@ -59,15 +59,24 @@ class Home extends Component {
               <FilledButton id="count-decrease">Decrease</FilledButton>
             </div>
           </article>
+          <article>
+            ${repeat.map((item, i) => `
+              <Heading level="${i + 1}">
+                Heading Level ${item}
+              </Heading>
+            `
+            ).join("")}
+          </article>
         </Section>
         <section>
           <article>
-          ${repeat.map((item, i) => `
-            <Heading level="${i + 1}">
-              Heading Level ${item}
-            </Heading>
-           `
-          ).join("")}
+            <Heading level="2">Link Group</Heading>
+            <p>Dynamic Segments</p>
+            <div class="link-group">
+              <a href="/posts">Posts</a>
+              <a href="/posts/diary">Posts Category</a>
+              <a href="/posts/diary/1">Posts Category ID</a>
+            </div>
           </article>
         </section>
       </Container>
