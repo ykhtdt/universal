@@ -24,9 +24,17 @@ class Home extends Component {
   }
 
   setEvent() {
-    this.addEvent('click', '[data-button-id="count-plus"]', ({ target }) => {
+    this.addEvent('click', '[data-button-id="count-increase"]', (event) => {
+      // console.log(event.target);
       this.setState({
         count: this.state.count + 1,
+      });
+    });
+
+    this.addEvent('click', '[data-button-id="count-decrease"]', (event) => {
+      // console.log(event.target);
+      this.setState({
+        count: this.state.count - 1,
       });
     });
   }
@@ -42,22 +50,25 @@ class Home extends Component {
 
     return `
       <Container>
+        <Heading level="1">Home</Heading>
         <Section>
-          <Heading level="1">Welcome Home</Heading>
-          <div>${this.state.count}</div>
-          <div>
-            <FilledButton id="count-plus">Plus</FilledButton>
-          </div>
+          <article>
+            <div class="text">Count ${this.state.count}</div>
+            <div class="button-group">
+              <FilledButton id="count-increase">Increase</FilledButton>
+              <FilledButton id="count-decrease">Decrease</FilledButton>
+            </div>
+          </article>
         </Section>
-        <section class="wrapper">
-          Temp
-          ${repeat.map((item) => `
-            <Heading level="2">
-              ${item}
+        <section>
+          <article>
+          ${repeat.map((item, i) => `
+            <Heading level="${i + 1}">
+              Heading Level ${item}
             </Heading>
            `
           ).join("")}
-          Test, I
+          </article>
         </section>
       </Container>
     `
