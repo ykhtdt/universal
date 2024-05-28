@@ -53,15 +53,6 @@
 
 /* button */
 .filled-button {
-  color: inherit;
-  background: inherit;
-  border: none;
-  box-shadow: none;
-  border-radius: 0;
-  padding: 0;
-  overflow: visible;
-  cursor: pointer;
-
   background-color: #27272A;
   padding: 0.125rem 0.625rem;
   font-weight: 500;
