@@ -6,7 +6,9 @@ class Container extends Component {
 
     return `
       <div class="container" data-component="container">
-        ${children}
+        <div class="container-inner">
+          ${children}
+        </div>
       </div>
     `;
   }
