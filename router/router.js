@@ -1,7 +1,4 @@
-import Home from "./pages/home.js";
-import Posts from "./pages/posts.js";
-import Post from "./pages/post.js";
-import NotFound from "./pages/not-found.js";
+import { routes, NotFound } from "./routes.js";
 
 const pathToRegex = (path) => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "([^\\/]+)") + "$");
 
@@ -31,14 +28,6 @@ const router = async () => {
     redirectTo(trimmedPath);
     return;
   }
-
-  // 주어진 경로에 대해 페이지를 매핑
-  const routes = [
-    { path: "/", view: Home },
-    { path: "/posts", view: Posts },
-    { path: "/posts/:category", view: Posts },
-    { path: "/posts/:category/:id", view: Post },
-  ];
 
   // 현재 URL 경로와 각 경로에 대한 페이지 클래스를 매핑하여 배열에 저장한다.
   const potentialMatches = routes.map(route => {
