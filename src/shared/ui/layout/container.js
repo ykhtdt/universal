@@ -5,7 +5,7 @@ class Container extends Component {
     const children = this.props.children;
 
     return `
-      <div class="container">
+      <div class="container" data-component="container">
         ${children}
       </div>
     `;

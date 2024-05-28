@@ -5,7 +5,7 @@ class Section extends Component {
     const children = this.props.children;
 
     return `
-      <section class="section">
+      <section class="section" data-component="section">
         ${children}
       </section>
     `;

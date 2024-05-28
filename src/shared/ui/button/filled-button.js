@@ -9,7 +9,7 @@ class FilledButton extends Component {
     // onClick(); // onClick is not a function
 
     return `
-      <button class="filled-button" data-button-id="${id}">
+      <button class="filled-button" data-button-id="${id}" data-component="filled-button">
         ${children}
       </button>
     `;
