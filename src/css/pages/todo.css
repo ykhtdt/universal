@@ -1,0 +1,49 @@
+.todo-inner {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.todo-column {
+  width: 50%;
+}
+
+.input-area {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-field {
+  width: 100%;
+  border: 1px solid #D2D2D2;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+
+  &::placeholder {
+    color: #9CA3AF;
+    font-size: 0.875rem;
+  }
+}
+
+.button-add-task {
+  position: absolute;
+  right: 0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-task {
+  display: flex;
+}
+
+.todo-counter {
+  display: flex;
+  justify-content: space-between;
+}
