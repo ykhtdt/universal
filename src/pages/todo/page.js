@@ -5,16 +5,21 @@ import Section from "/src/shared/ui/layout/section.js";
 import Heading from "/src/shared/ui/typography/heading.js";
 import FilledButton from "/src/shared/ui/button/filled-button.js";
 
+import TodoTask from "/src/entities/todo/ui/todo-task.js";
 import {
   getTodoFromLocalStorage,
   saveTodoToLocalStorage,
 } from "/src/entities/todo/lib/local-storage.js";
 
 const componentMap = {
+  // shared
   Container,
   Section,
   Heading,
   FilledButton,
+
+  // entities
+  TodoTask,
 };
 
 class Todo extends Component {
@@ -31,7 +36,7 @@ class Todo extends Component {
   addTask() {
     const { todo } = this.state;
 
-    const todoInput = document.querySelector('[data-input-id="todo-input"]')
+    const todoInput = document.querySelector('[data-input-id="todo-add-input"]');
     const newTask = todoInput.value.trim();
 
     if (newTask !== "") {
@@ -70,10 +75,13 @@ class Todo extends Component {
       this.deleteAllTasks();
     });
 
-    this.addEvent('keydown', '[data-input-id="todo-input"]', (event) => {
+    this.addEvent('keydown', '[data-input-id="todo-add-input"]', (event) => {
       if (event.key === "Enter") {
         event.preventDefault();
         this.addTask();
+
+        const todoInput = document.querySelector('[data-input-id="todo-add-input"]');
+        todoInput.focus();
       }
     });
   }
@@ -104,7 +112,7 @@ class Todo extends Component {
               <input
                 type="text"
                 placeholder="Add a new task"
-                data-input-id="todo-input"
+                data-input-id="todo-add-input"
                 class="input-field"
               />
               <FilledButton id="add-task" className="button-add-task">
@@ -112,10 +120,8 @@ class Todo extends Component {
               </FilledButton>
             </div>
             <ul class="todo-list">
-              ${todo.map((task) => `
-                  <li class="todo-task">
-                    ${task.text}
-                  </li>
+              ${todo.map((task, index) => `
+                  <TodoTask index="${index}" text="${task.text}" disabled="${task.disabled}" />
                 `
               ).join("")}
             </ul>
