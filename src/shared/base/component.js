@@ -1,4 +1,4 @@
-import parseTemplate from './template-parser.js';
+import parseTemplate from "./template-parser.js";
 
 class Component {
   target;
@@ -8,6 +8,8 @@ class Component {
   componentMap;
 
   constructor({ target = null, props, state, componentMap = {}, params }) {
+    this.isMounted = false;
+
     this.target = target;
     this.props = props;
     this.state = state;
@@ -30,7 +32,11 @@ class Component {
     if (this.target) {
       this.target.innerHTML = parseTemplate(this.template(), this.componentMap);
     }
-    this.mounted();
+
+    if (!this.isMounted) {
+      this.isMounted = true;
+      this.mounted();
+    }
   }
 
   setState(newState) {
