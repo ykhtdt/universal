@@ -15,7 +15,21 @@ const parseTemplate = (template, componentMap) => {
  */
 const parseAttributes = (node) => {
   return Array.from(node.attributes).reduce((attributes, attr) => {
-    attributes[attr.name] = attr.value;
+    /**
+     * @TODO
+     * 파싱 과정에서 속성의 타입이 모두 string이 되기 때문에 임시로 추가.
+     * 좀더 유연한 방법이 필요하다.
+     */
+    if (attr.value === "true") {
+      attributes[attr.name] = true;
+    } else if (attr.value === "false") {
+      attributes[attr.name] = false;
+    } else if (!isNaN(attr.value)) {
+      attributes[attr.name] = Number(attr.value);
+    } else {
+      attributes[attr.name] = attr.value;
+    }
+
     return attributes;
   }, {});
 };
