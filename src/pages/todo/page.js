@@ -93,7 +93,7 @@ class Todo extends Component {
     return `
       <Container>
         <Heading level="1">
-          Todos
+          Todo
         </Heading>
         <Section className="todo-inner">
           <div class="todo-column">
