@@ -10,7 +10,11 @@ class Component {
   constructor({ target = null, props, state, componentMap = {}, params }) {
     this.isMounted = false;
 
-    this.target = target;
+    /**
+     * @TODO
+     * 페이지가 아닌 컴포넌트의 경우 target에 대한 고민이 필요하다.
+     */
+    this.target = target || document.querySelector("#app");
     this.props = props;
     this.state = state;
     this.params = params;
@@ -51,9 +55,9 @@ class Component {
   setEvent() {}
 
   addEvent(eventType, selector, callback) {
-    if (!this.target) {
-      return;
-    }
+    // if (!this.target) {
+    //   return;
+    // }
 
     this.target.addEventListener(eventType, (event) => {
       if (!event.target.closest(selector)) {
