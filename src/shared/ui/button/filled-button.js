@@ -8,9 +8,11 @@ class FilledButton extends Component {
     // const onClick = this.props.onClick;
     // onClick(); // onClick is not a function
 
+    const classes = className ? `filled-button ${className}` : "filled-button";
+
     return `
       <button
-        class="filled-button ${className}"
+        class="${classes}"
         data-button-id="${id}"
         data-component="filled-button"
       >

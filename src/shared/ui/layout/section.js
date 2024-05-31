@@ -4,8 +4,10 @@ class Section extends Component {
   template() {
     const { className, children } = this.props;
 
+    const classes = className ? `section ${className}` : "section";
+
     return `
-      <section class="section ${className}" data-component="section">
+      <section class="${classes}" data-component="section">
         ${children}
       </section>
     `;
